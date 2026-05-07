@@ -1,6 +1,6 @@
-﻿namespace GymMamagementSystemRivas
+﻿namespace GymManagementSystemRivas
 {
-    partial class adminDashboard
+    partial class clientDashboard
     {
         /// <summary>
         /// Required designer variable.
@@ -37,6 +37,7 @@
             lblRole = new Label();
             lblFullName = new Label();
             lblUsername = new Label();
+            label2 = new Label();
             btnClose = new Button();
             btnMaximize = new Button();
             btnMinimize = new Button();
@@ -68,10 +69,6 @@
             tabPage14 = new TabPage();
             tabPage15 = new TabPage();
             tabPage16 = new TabPage();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
-            label2 = new Label();
             panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxLogo).BeginInit();
             panelUser.SuspendLayout();
@@ -95,8 +92,7 @@
             panelTop.Location = new Point(0, 0);
             panelTop.Name = "panelTop";
             panelTop.Size = new Size(1172, 64);
-            panelTop.TabIndex = 2;
-            panelTop.Paint += panelTop_Paint;
+            panelTop.TabIndex = 3;
             // 
             // pictureBoxLogo
             // 
@@ -141,7 +137,6 @@
             lblDate.Size = new Size(168, 20);
             lblDate.TabIndex = 0;
             lblDate.Text = "Wednesday, 6 May 2026";
-            lblDate.Click += lblDate_Click;
             // 
             // lblTime
             // 
@@ -183,12 +178,23 @@
             lblUsername.TabIndex = 4;
             lblUsername.Text = "Username";
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(62, 16);
+            label2.Name = "label2";
+            label2.Size = new Size(262, 28);
+            label2.TabIndex = 1;
+            label2.Text = "GYM Management System";
+            // 
             // btnClose
             // 
             btnClose.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnClose.FlatStyle = FlatStyle.Flat;
             btnClose.ForeColor = Color.White;
-            btnClose.Location = new Point(2092, 18);
+            btnClose.Location = new Point(3064, 18);
             btnClose.Name = "btnClose";
             btnClose.Size = new Size(36, 28);
             btnClose.TabIndex = 3;
@@ -200,7 +206,7 @@
             btnMaximize.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnMaximize.FlatStyle = FlatStyle.Flat;
             btnMaximize.ForeColor = Color.White;
-            btnMaximize.Location = new Point(2048, 18);
+            btnMaximize.Location = new Point(3020, 18);
             btnMaximize.Name = "btnMaximize";
             btnMaximize.Size = new Size(36, 28);
             btnMaximize.TabIndex = 4;
@@ -212,7 +218,7 @@
             btnMinimize.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnMinimize.FlatStyle = FlatStyle.Flat;
             btnMinimize.ForeColor = Color.White;
-            btnMinimize.Location = new Point(2004, 18);
+            btnMinimize.Location = new Point(2976, 18);
             btnMinimize.Name = "btnMinimize";
             btnMinimize.Size = new Size(36, 28);
             btnMinimize.TabIndex = 5;
@@ -254,7 +260,6 @@
             tabPage2.Size = new Size(963, 703);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "tabPage2";
-            tabPage2.Click += tabPage2_Click;
             // 
             // tabPage3
             // 
@@ -324,7 +329,7 @@
             panelLeft.Location = new Point(0, 64);
             panelLeft.Name = "panelLeft";
             panelLeft.Size = new Size(200, 736);
-            panelLeft.TabIndex = 1;
+            panelLeft.TabIndex = 4;
             // 
             // btnLogout
             // 
@@ -338,7 +343,6 @@
             btnLogout.Text = "  Logout";
             btnLogout.TextAlign = ContentAlignment.MiddleLeft;
             btnLogout.UseVisualStyleBackColor = true;
-            btnLogout.Click += btnLogout_Click;
             // 
             // btnSettings
             // 
@@ -428,11 +432,10 @@
             // 
             panel1.BackColor = SystemColors.Info;
             panel1.Controls.Add(tabControl2);
-            panel1.Location = new Point(201, 68);
+            panel1.Location = new Point(203, 68);
             panel1.Name = "panel1";
             panel1.Size = new Size(1172, 800);
-            panel1.TabIndex = 3;
-            panel1.Paint += panel1_Paint;
+            panel1.TabIndex = 5;
             // 
             // tabControl2
             // 
@@ -469,7 +472,6 @@
             tabPage10.Size = new Size(963, 703);
             tabPage10.TabIndex = 1;
             tabPage10.Text = "tabPage2";
-            tabPage10.Click += tabPage2_Click;
             // 
             // tabPage11
             // 
@@ -525,68 +527,17 @@
             tabPage16.TabIndex = 7;
             tabPage16.Text = "tabPage8";
             // 
-            // button1
-            // 
-            button1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(2063, 70);
-            button1.Name = "button1";
-            button1.Size = new Size(36, 28);
-            button1.TabIndex = 5;
-            button1.Text = "_";
-            button1.Visible = false;
-            // 
-            // button2
-            // 
-            button2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            button2.FlatStyle = FlatStyle.Flat;
-            button2.ForeColor = Color.White;
-            button2.Location = new Point(2107, 70);
-            button2.Name = "button2";
-            button2.Size = new Size(36, 28);
-            button2.TabIndex = 4;
-            button2.Text = "▢";
-            button2.Visible = false;
-            // 
-            // button3
-            // 
-            button3.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            button3.FlatStyle = FlatStyle.Flat;
-            button3.ForeColor = Color.White;
-            button3.Location = new Point(2151, 70);
-            button3.Name = "button3";
-            button3.Size = new Size(36, 28);
-            button3.TabIndex = 3;
-            button3.Text = "X";
-            button3.Visible = false;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(62, 16);
-            label2.Name = "label2";
-            label2.Size = new Size(262, 28);
-            label2.TabIndex = 1;
-            label2.Text = "GYM Management System";
-            // 
-            // adminDashboard
+            // clientDashboard
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1172, 800);
+            Controls.Add(panel1);
             Controls.Add(panelLeft);
             Controls.Add(panelTop);
-            Controls.Add(panel1);
-            Controls.Add(button1);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Name = "adminDashboard";
-            Text = " ";
-            WindowState = FormWindowState.Maximized;
-            Load += adminDashboard_Load;
+            Name = "clientDashboard";
+            Text = "Form1";
+            Load += this.clientDashboard_Load;
             panelTop.ResumeLayout(false);
             panelTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxLogo).EndInit();
@@ -600,27 +551,20 @@
         }
 
         #endregion
+
         private Panel panelTop;
         private PictureBox pictureBoxLogo;
         private Panel panelUser;
+        private Label label1;
         private Label lblDate;
         private Label lblTime;
         private Label lblRole;
         private Label lblFullName;
         private Label lblUsername;
+        private Label label2;
         private Button btnClose;
         private Button btnMaximize;
         private Button btnMinimize;
-        private Panel panelLeft;
-        private Button btnSettings;
-        private Button btnCustomers;
-        private Button btnSuppliers;
-        private Button btnProducts;
-        private Button btnPurchases;
-        private Button btnSalesOrders;
-        private Button btnDashboard;
-        private Label label1;
-        private Button btnLogout;
         private TabControl tabControl1;
         private TabPage tabPage1;
         private TabPage tabPage2;
@@ -630,8 +574,16 @@
         private TabPage tabPage6;
         private TabPage tabPage7;
         private TabPage tabPage8;
+        private Panel panelLeft;
+        private Button btnLogout;
+        private Button btnSettings;
+        private Button btnCustomers;
+        private Button btnSuppliers;
+        private Button btnProducts;
+        private Button btnPurchases;
+        private Button btnSalesOrders;
+        private Button btnDashboard;
         private Panel panel1;
-        private Label label2;
         private TabControl tabControl2;
         private TabPage tabPage9;
         private TabPage tabPage10;
@@ -641,8 +593,5 @@
         private TabPage tabPage14;
         private TabPage tabPage15;
         private TabPage tabPage16;
-        private Button button1;
-        private Button button2;
-        private Button button3;
     }
 }
