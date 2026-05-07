@@ -19,7 +19,7 @@ namespace GymMamagementSystemRivas
             // Pass the entered email/username to the dashboard
             Form adminDashboard = new adminDashboard(txtEmail.Text);
             adminDashboard.Show();
-            this.Close();
+            this.Hide();
         }
 
         // Placeholder behavior for professional textboxes
