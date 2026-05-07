@@ -1,4 +1,4 @@
-﻿namespace GymManagementSystemRivas
+﻿namespace GymMamagementSystemRivas
 {
     partial class clientDashboard
     {
@@ -343,6 +343,7 @@
             btnLogout.Text = "  Logout";
             btnLogout.TextAlign = ContentAlignment.MiddleLeft;
             btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Click += this.btnLogout_Click;
             // 
             // btnSettings
             // 
@@ -455,7 +456,7 @@
             // 
             // tabPage9
             // 
-            tabPage9.BackColor = Color.DimGray;
+            tabPage9.BackColor = Color.RosyBrown;
             tabPage9.Location = new Point(4, 29);
             tabPage9.Name = "tabPage9";
             tabPage9.Padding = new Padding(3);
@@ -536,8 +537,8 @@
             Controls.Add(panelLeft);
             Controls.Add(panelTop);
             Name = "clientDashboard";
-            Text = "Form1";
-            Load += this.clientDashboard_Load;
+            Text = "client";
+            Load += clientDashboard_Load;
             panelTop.ResumeLayout(false);
             panelTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxLogo).EndInit();

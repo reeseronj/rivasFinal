@@ -16,10 +16,31 @@ namespace GymMamagementSystemRivas
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // Pass the entered email/username to the dashboard
-            Form adminDashboard = new adminDashboard(txtEmail.Text);
-            adminDashboard.Show();
-            this.Hide();
+            // Simple role-based login (example accounts)
+            var user = txtEmail.Text?.Trim();
+            var pass = txtPassword.Text;
+
+            // hardcoded demo accounts - replace with real auth in production
+            bool isAdmin = (string.Equals(user, "admin", StringComparison.OrdinalIgnoreCase) || string.Equals(user, "admin@example.com", StringComparison.OrdinalIgnoreCase)) && pass == "admin123";
+            bool isClient = (string.Equals(user, "client", StringComparison.OrdinalIgnoreCase) || string.Equals(user, "client@example.com", StringComparison.OrdinalIgnoreCase)) && pass == "client123";
+
+            if (isAdmin)
+            {
+                var admin = new adminDashboard(user);
+                admin.Show();
+                this.Hide();
+                return;
+            }
+
+            if (isClient)
+            {
+                var client = new clientDashboard(user);
+                client.Show();
+                this.Hide();
+                return;
+            }
+
+            MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         // Placeholder behavior for professional textboxes
