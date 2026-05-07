@@ -37,6 +37,7 @@
             lblRole = new Label();
             lblFullName = new Label();
             lblUsername = new Label();
+            label2 = new Label();
             btnClose = new Button();
             btnMaximize = new Button();
             btnMinimize = new Button();
@@ -71,7 +72,6 @@
             button1 = new Button();
             button2 = new Button();
             button3 = new Button();
-            label2 = new Label();
             panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBoxLogo).BeginInit();
             panelUser.SuspendLayout();
@@ -83,7 +83,7 @@
             // 
             // panelTop
             // 
-            panelTop.BackColor = Color.FromArgb(3, 71, 72);
+            panelTop.BackColor = Color.Navy;
             panelTop.Controls.Add(pictureBoxLogo);
             panelTop.Controls.Add(panelUser);
             panelTop.Controls.Add(label2);
@@ -182,6 +182,17 @@
             lblUsername.Size = new Size(75, 20);
             lblUsername.TabIndex = 4;
             lblUsername.Text = "Username";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            label2.ForeColor = Color.White;
+            label2.Location = new Point(62, 16);
+            label2.Name = "label2";
+            label2.Size = new Size(262, 28);
+            label2.TabIndex = 1;
+            label2.Text = "GYM Management System";
             // 
             // btnClose
             // 
@@ -312,7 +323,7 @@
             // 
             // panelLeft
             // 
-            panelLeft.BackColor = Color.FromArgb(2, 67, 66);
+            panelLeft.BackColor = Color.Navy;
             panelLeft.Controls.Add(btnLogout);
             panelLeft.Controls.Add(btnSettings);
             panelLeft.Controls.Add(btnCustomers);
@@ -560,17 +571,6 @@
             button3.TabIndex = 3;
             button3.Text = "X";
             button3.Visible = false;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(62, 16);
-            label2.Name = "label2";
-            label2.Size = new Size(262, 28);
-            label2.TabIndex = 1;
-            label2.Text = "GYM Management System";
             // 
             // adminDashboard
             // 

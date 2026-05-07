@@ -80,7 +80,7 @@
             // 
             // panelTop
             // 
-            panelTop.BackColor = Color.FromArgb(3, 71, 72);
+            panelTop.BackColor = Color.Navy;
             panelTop.Controls.Add(pictureBoxLogo);
             panelTop.Controls.Add(panelUser);
             panelTop.Controls.Add(label2);
@@ -317,7 +317,7 @@
             // 
             // panelLeft
             // 
-            panelLeft.BackColor = Color.FromArgb(2, 67, 66);
+            panelLeft.BackColor = Color.Navy;
             panelLeft.Controls.Add(btnLogout);
             panelLeft.Controls.Add(btnSettings);
             panelLeft.Controls.Add(btnCustomers);
