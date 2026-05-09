@@ -68,7 +68,6 @@
             btnPurchases = new Button();
             btnSalesOrders = new Button();
             btnDashboard = new Button();
-            panel1 = new Panel();
             button1 = new Button();
             button2 = new Button();
             button3 = new Button();
@@ -546,6 +545,7 @@
             btnSalesOrders.TabIndex = 6;
             btnSalesOrders.Text = "  Sales Orders";
             btnSalesOrders.TextAlign = ContentAlignment.MiddleLeft;
+            btnSalesOrders.Click += btnSalesOrders_Click_1;
             // 
             // btnDashboard
             // 
@@ -559,16 +559,7 @@
             btnDashboard.TabIndex = 7;
             btnDashboard.Text = "  Dashboard";
             btnDashboard.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // panel1
-            // 
-            panel1.BackColor = SystemColors.Info;
-            panel1.Location = new Point(176, 51);
-            panel1.Margin = new Padding(3, 2, 3, 2);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(1026, 600);
-            panel1.TabIndex = 3;
-            panel1.Paint += panel1_Paint;
+            btnDashboard.Click += btnDashboard_Click_1;
             // 
             // button1
             // 
@@ -616,7 +607,6 @@
             ClientSize = new Size(1026, 600);
             Controls.Add(panelLeft);
             Controls.Add(panelTop);
-            Controls.Add(panel1);
             Controls.Add(button1);
             Controls.Add(button3);
             Controls.Add(button2);

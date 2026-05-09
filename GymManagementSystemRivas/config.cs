@@ -1,7 +1,9 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using BCrypt.Net;
+using Org.BouncyCastle.Crypto.Generators;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using MySql.Data.MySqlClient;
 
 namespace GymManagementSystemRivas
 {
@@ -55,6 +57,74 @@ namespace GymManagementSystemRivas
                 }
             }
             return "None";
+        }
+
+        public static bool IsEmailDuplicate(string email)
+        {
+            using (MySqlConnection conn = GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+
+                    // We use UNION to check all three tables in a single query for efficiency
+                    string query = @"
+                SELECT email FROM admin_tbl WHERE email = @email
+                UNION
+                SELECT email FROM coach_tbl WHERE email = @email
+                UNION
+                SELECT email FROM member_tbl WHERE email = @email";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@email", email);
+
+                        using (MySqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            return reader.HasRows;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.Forms.MessageBox.Show("Validation Error: " + ex.Message);
+                    return true;
+                }
+            }
+        }
+
+        public static bool RegisterUser(string role, string fname, string lname, string email, string password)
+        {
+            string tableName = (role == "Coach") ? "coach_tbl" : "member_tbl";
+
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+
+                    // 2. Insert with simplified column names and 'inactive' status
+                    string query = $"INSERT INTO {tableName} (fname, lname, email, password, status) " +
+                                   $"VALUES (@fname, @lname, @email, @pass, 'inactive')";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@fname", fname);
+                        cmd.Parameters.AddWithValue("@lname", lname);
+                        cmd.Parameters.AddWithValue("@email", email);
+                        cmd.Parameters.AddWithValue("@pass", hashedPassword);
+
+                        return cmd.ExecuteNonQuery() > 0;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.Forms.MessageBox.Show("Registration Error: " + ex.Message);
+                    return false;
+                }
+            }
         }
     }
 }

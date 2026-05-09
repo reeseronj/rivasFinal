@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            comboBox1 = new ComboBox();
+            cmbRole = new ComboBox();
             label1 = new Label();
             label2 = new Label();
             label3 = new Label();
@@ -39,15 +39,17 @@
             txtEmail = new TextBox();
             txtPassword = new TextBox();
             checkBox1 = new CheckBox();
+            btnSignup = new Button();
             SuspendLayout();
             // 
-            // comboBox1
+            // cmbRole
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(350, 53);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(145, 23);
-            comboBox1.TabIndex = 0;
+            cmbRole.FormattingEnabled = true;
+            cmbRole.Items.AddRange(new object[] { "Member", "Coach" });
+            cmbRole.Location = new Point(350, 53);
+            cmbRole.Name = "cmbRole";
+            cmbRole.Size = new Size(145, 23);
+            cmbRole.TabIndex = 0;
             // 
             // label1
             // 
@@ -119,6 +121,7 @@
             // 
             txtPassword.Location = new Point(350, 212);
             txtPassword.Name = "txtPassword";
+            txtPassword.PasswordChar = '*';
             txtPassword.Size = new Size(145, 23);
             txtPassword.TabIndex = 9;
             // 
@@ -134,11 +137,22 @@
             checkBox1.Text = "Show password";
             checkBox1.CheckedChanged += checkBox1_CheckedChanged;
             // 
+            // btnSignup
+            // 
+            btnSignup.Location = new Point(361, 292);
+            btnSignup.Name = "btnSignup";
+            btnSignup.Size = new Size(75, 23);
+            btnSignup.TabIndex = 11;
+            btnSignup.Text = "Sign Up";
+            btnSignup.UseVisualStyleBackColor = true;
+            btnSignup.Click += btnSignup_Click;
+            // 
             // signupPage
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnSignup);
             Controls.Add(checkBox1);
             Controls.Add(txtPassword);
             Controls.Add(txtEmail);
@@ -149,7 +163,7 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(comboBox1);
+            Controls.Add(cmbRole);
             Name = "signupPage";
             Text = "signupPage";
             ResumeLayout(false);
@@ -158,7 +172,7 @@
 
         #endregion
 
-        private ComboBox comboBox1;
+        private ComboBox cmbRole;
         private Label label1;
         private Label label2;
         private Label label3;
@@ -169,5 +183,6 @@
         private TextBox txtEmail;
         private TextBox txtPassword;
         private CheckBox checkBox1;
+        private Button btnSignup;
     }
 }
