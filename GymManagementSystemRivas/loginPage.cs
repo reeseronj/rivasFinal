@@ -1,3 +1,5 @@
+using GymManagementSystemRivas;
+using MySql.Data.MySqlClient;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace GymMamagementSystemRivas
@@ -16,10 +18,32 @@ namespace GymMamagementSystemRivas
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // Pass the entered email/username to the dashboard
-            Form adminDashboard = new adminDashboard(txtEmail.Text);
-            adminDashboard.Show();
-            this.Hide();
+            string emailInput = txtEmail.Text.Trim();
+            string passwordInput = txtPassword.Text;
+
+            string userRole = config.GetUserRole(emailInput, passwordInput);
+
+            switch (userRole)
+            {
+                case "Admin":
+                    MessageBox.Show("Welcome, Admin!");
+                    new adminDashboard().Show();
+                    this.Hide();
+                    break;
+
+                case "Coach":
+                    // You can show a specific message or a Coach Dashboard here
+                    MessageBox.Show("Welcome, Coach! Accessing Coach portal.");
+                    break;
+
+                case "Member":
+                    MessageBox.Show("Welcome, Member!");
+                    break;
+
+                default:
+                    MessageBox.Show("Invalid Email or Password.");
+                    break;
+            }
         }
 
         // Placeholder behavior for professional textboxes
@@ -59,6 +83,22 @@ namespace GymMamagementSystemRivas
                 txtPassword.Text = "Password";
                 txtPassword.ForeColor = Color.LightGray;
             }
+        }
+
+        private void panelCard_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Form signupPage = new signupPage();
+            signupPage.Show();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
