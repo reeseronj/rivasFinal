@@ -151,7 +151,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(748, 348);
             Controls.Add(btnSignup);
             Controls.Add(checkBox1);
             Controls.Add(txtPassword);
@@ -166,6 +166,7 @@
             Controls.Add(cmbRole);
             Name = "signupPage";
             Text = "signupPage";
+            Load += signupPage_Load;
             ResumeLayout(false);
             PerformLayout();
         }

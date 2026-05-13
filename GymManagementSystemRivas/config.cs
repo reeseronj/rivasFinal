@@ -1,15 +1,16 @@
-﻿using MySql.Data.MySqlClient;
-using BCrypt.Net;
+﻿using BCrypt.Net;
+using MySql.Data.MySqlClient;
 using Org.BouncyCastle.Crypto.Generators;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 
 namespace GymManagementSystemRivas
 {
     internal class config
     {
-        public static string connectionString = "server=127.0.0.1;uid=root;pwd=NewPassword123!;database=gymRivas";
+        public static string connectionString = "server=192.168.0.101;uid=root;pwd=NewPassword123!;database=gymRivas";
 
         public static MySqlConnection GetConnection()
         {
@@ -25,30 +26,39 @@ namespace GymManagementSystemRivas
                     conn.Open();
 
                     // 1. Check admin_tbl
-                    string adminQuery = "SELECT COUNT(*) FROM admin_tbl WHERE email = @email AND password = @pass";
+                    string adminQuery = "SELECT password FROM admin_tbl WHERE email = @email";
                     using (MySqlCommand cmd = new MySqlCommand(adminQuery, conn))
                     {
                         cmd.Parameters.AddWithValue("@email", email);
-                        cmd.Parameters.AddWithValue("@pass", password);
-                        if (Convert.ToInt32(cmd.ExecuteScalar()) > 0) return "Admin";
+                        object result = cmd.ExecuteScalar();
+                        if (result != null && BCrypt.Net.BCrypt.Verify(password, result.ToString()))
+                        {
+                            return "Admin";
+                        }
                     }
 
                     // 2. Check coach_tbl
-                    string coachQuery = "SELECT COUNT(*) FROM coach_tbl WHERE email = @email AND password = @pass";
+                    string coachQuery = "SELECT password FROM coach_tbl WHERE email = @email";
                     using (MySqlCommand cmd = new MySqlCommand(coachQuery, conn))
                     {
                         cmd.Parameters.AddWithValue("@email", email);
-                        cmd.Parameters.AddWithValue("@pass", password);
-                        if (Convert.ToInt32(cmd.ExecuteScalar()) > 0) return "Coach";
+                        object result = cmd.ExecuteScalar();
+                        if (result != null && BCrypt.Net.BCrypt.Verify(password, result.ToString()))
+                        {
+                            return "Coach";
+                        }
                     }
 
                     // 3. Check member_tbl
-                    string memberQuery = "SELECT COUNT(*) FROM member_tbl WHERE email = @email AND password = @pass";
+                    string memberQuery = "SELECT password FROM member_tbl WHERE email = @email";
                     using (MySqlCommand cmd = new MySqlCommand(memberQuery, conn))
                     {
                         cmd.Parameters.AddWithValue("@email", email);
-                        cmd.Parameters.AddWithValue("@pass", password);
-                        if (Convert.ToInt32(cmd.ExecuteScalar()) > 0) return "Member";
+                        object result = cmd.ExecuteScalar();
+                        if (result != null && BCrypt.Net.BCrypt.Verify(password, result.ToString()))
+                        {
+                            return "Member";
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -126,5 +136,78 @@ namespace GymManagementSystemRivas
                 }
             }
         }
+
+        public static bool RegisterAdmin(string fname, string lname, string email, string role, string password)
+        {
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
+
+            using (MySqlConnection conn = GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "INSERT INTO admin_tbl (fname, lname, email, role, password) " +
+                                   "VALUES (@fname, @lname, @email, @role, @pass)";
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@fname", fname);
+                        cmd.Parameters.AddWithValue("@lname", lname);
+                        cmd.Parameters.AddWithValue("@email", email);
+                        cmd.Parameters.AddWithValue("@role", role);
+                        cmd.Parameters.AddWithValue("@pass", hashedPassword);
+
+                        return cmd.ExecuteNonQuery() > 0;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.Forms.MessageBox.Show("Admin Registration Error: " + ex.Message);
+                    return false;
+                }
+            }
+        }
+        public static DataRow GetAdminById(string id)
+        {
+            DataTable dt = new DataTable();
+            using (MySqlConnection conn = GetConnection())
+            {
+                string query = "SELECT * FROM admin_tbl WHERE admin_id = @id";
+                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+                    using (MySqlDataAdapter adapter = new MySqlDataAdapter(cmd))
+                    {
+                        adapter.Fill(dt);
+                    }
+                }
+            }
+            return dt.Rows.Count > 0 ? dt.Rows[0] : null;
+        }
+        private static void EditAdmin(string id)
+        {
+            // 1. Fetch the specific admin data using the ID
+            // You'll need a function like GetAdminById(id) that returns a DataRow or Object
+            DataRow adminData = GetAdminById(id);
+
+            if (adminData != null)
+            {
+                // 2. Initialize your form
+                addEditStaff editForm = new addEditStaff();
+
+                // 3. Fill the form's fields with the credentials
+                editForm.txtFname.Text = adminData["fname"].ToString();
+                editForm.txtLname.Text = adminData["lname"].ToString();
+                editForm.txtEmail.Text = adminData["email"].ToString();
+
+                // Use a Tag or a public property to tell the form it's in "Edit Mode"
+                editForm.Tag = id;
+                editForm.btnSave.Text = "Update Staff"; // Change button text to reflect action
+
+                // 4. Show the form
+                editForm.ShowDialog();
+            }
+        }
+
     }
 }

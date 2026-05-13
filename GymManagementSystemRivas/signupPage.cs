@@ -40,5 +40,10 @@ namespace GymManagementSystemRivas
                 this.Close();
             }
         }
+
+        private void signupPage_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
